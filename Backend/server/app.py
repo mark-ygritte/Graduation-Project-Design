@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from flask import Flask, render_template
+from flask import Flask, render_template, jsonify
 
 app = Flask(__name__)
 
@@ -11,7 +11,6 @@ def health_check():
 @app.route('/')
 def index():
     return render_template('index.html')
-
 
 if __name__ == "__main__":
     app.debug = True
