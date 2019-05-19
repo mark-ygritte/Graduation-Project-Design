@@ -18,20 +18,46 @@ frequnce_t = [
     [1, 2, 1],
     [3, 5, 5],
     [1, 2, 1, 5, 5],
-    [4, 3, 1, 2, 5, 2, 5, 5, 2, 4, 1],
+    [4, 3, 1, 2, 5, 2, 5, 2, 4, 1],
     [5, 5, 5, 5, 5, 5, 5, 5, 5, 4, 3, 2, 2, 3, 1, 1, 5],
     [1, 5, 4, 5, 5, 5, 2],
     [5, 2, 5, 3, 2, 3]
 ]
 
+training_data = [[] for i in range(65)]
+labels = [[] for i in range(65)]
+
+car_infos = [[] for i in range(9)]
+
 for i in range(20):
     with open('./forms/car_{}.txt'.format(i), 'r') as f:
         car_info = f.read().replace('.', ',').replace(']', '],')
         car_info = eval(car_info)[0]
+        car_info = np.asarray(car_info).T
+        for k in range(9):
+            for item in car_info[k]:
+                car_infos[k].append(list(car_info[k]))
         f.close()
 
+for i in range(20):
     with open('./forms/car_{}_training.txt'.format(i), 'r') as f:
-        training_data = eval(f.read())
+        success_pro = eval(f.read())
         f.close()
+
+    for item in success_pro:
+#         module_id = item[0]
+#         threat_id = item[1]
+#         for e in item[2]:
+#             car_module_info = list(car_info[module_id])
+#             car_module_info.append(threat_id)
+#             training_data[module_id].append(car_module_info)
+#             labels[module_id].append(e)
+    
+# print(len(training_data[0]))
+# print(len(labels[0]))
     
     
+
+car_infos = np.asarray(car_infos)
+
+print(car_infos.shape)
