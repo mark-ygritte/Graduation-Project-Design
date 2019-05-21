@@ -2,6 +2,7 @@
 
 from flask import Flask, render_template, jsonify, request
 from flask_restful import abort, Resource, marshal_with, reqparse
+from flask_cors import CORS
 from fields import risk_db_fields, risk_db_list_fields, risk_occur_db_fields
 from extensions import app, db, api
 from db_config import RiskDb, RiskOccurDb
